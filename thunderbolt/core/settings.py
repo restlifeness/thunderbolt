@@ -21,6 +21,9 @@ class ApplicationSettings(BaseSettings):
     REDIS_PORT: int
     REDIS_HOST: str
 
+    JWT_SECRET: str = 'thunderbolt@secret'
+    JWT_ALGORITHM: str = 'HS256'
+
     HASH_METHOD: str = 'scrypt'
     SALT_LENGTH: int = 16
 
@@ -40,6 +43,7 @@ def get_async_db_uri_from_env():
     postgres_host = os.environ.get('POSTGRES_HOST')
     return f"postgresql+asyncpg://{postgres_user}:{postgres_password}@{postgres_host}:{postgres_port}/{postgres_db}"
 
+# TODO: Remove this function
 
 def get_sync_db_uri_from_env():
     load_dotenv()
