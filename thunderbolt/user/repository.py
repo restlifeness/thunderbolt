@@ -1,5 +1,6 @@
 import uuid
 
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from thunderbolt.core.base import AbstractRepository
@@ -43,7 +44,7 @@ class UserRepository(AbstractRepository):
         self._session.add(user)
         await self._session.flush()
 
-    def get(self, user_id: uuid.UUID) -> User:
+    async def get(self, user_id: uuid.UUID) -> User:
         """
         Get a User from the database by id.
 
@@ -53,9 +54,11 @@ class UserRepository(AbstractRepository):
         Returns:
             User: User object
         """
-        return self._session.query(User).filter(User.id == user_id).first()
+        stmt = select(User).where(User.id == user_id)
+        result = await self._session.execute(stmt)
+        return result.scalars().first()
 
-    def get_by_username(self, username: str) -> User:
+    async def get_by_username(self, username: str) -> User:
         """
         Get a User from the database by username.
 
@@ -65,9 +68,11 @@ class UserRepository(AbstractRepository):
         Returns:
             User: User object
         """
-        return self._session.query(User).filter(User.username == username).first()
+        stmt = select(User).where(User.username == username)
+        result = await self._session.execute(stmt)
+        return result.scalars().first()
 
-    def get_by_email(self, email: str) -> User:
+    async def get_by_email(self, email: str) -> User:
         """
         Get a User from the database by email.
 
@@ -77,16 +82,20 @@ class UserRepository(AbstractRepository):
         Returns:
             User: User object
         """
-        return self._session.query(User).filter(User.email == email).first()
+        stmt = select(User).where(User.email == email)
+        result = await self._session.execute(stmt)
+        return result.scalars().first()
 
-    def get_all(self) -> list[User]:
+    async def get_all(self) -> list[User]:
         """
         Get all Users from the database.
 
         Returns:
             List[User]: List of User objects
         """
-        return self._session.query(User).all()
+        stmt = select(User)
+        result = await self._session.execute(stmt)
+        return result.scalars().all()
 
     async def delete(self, user: User) -> None:
         """
@@ -95,5 +104,5 @@ class UserRepository(AbstractRepository):
         Args:
             user (User): User object to be deleted
         """
-        self._session.delete(user)
+        await self._session.delete(user)
         await self._session.flush()
