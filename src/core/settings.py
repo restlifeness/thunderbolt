@@ -1,5 +1,6 @@
 import os
 
+from dotenv import load_dotenv
 from pydantic import BaseSettings
 
 
@@ -31,6 +32,7 @@ class ApplicationSettings(BaseSettings):
 
 
 def get_db_uri_from_env():
+    load_dotenv()
     postgres_user = os.environ.get('POSTGRES_USER')
     postgres_password = os.environ.get('POSTGRES_PASSWORD')
     postgres_db = os.environ.get('POSTGRES_DB')
