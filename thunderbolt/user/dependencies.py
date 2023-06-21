@@ -17,3 +17,4 @@ async def get_user_by_token(
     user_service: Annotated[UserService, Depends()]
 ) -> User:
     user = await user_service.get_user_by_token(token)
+    return user
