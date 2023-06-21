@@ -1,3 +1,4 @@
+import os
 
 from pydantic import BaseSettings
 
@@ -29,8 +30,18 @@ class ApplicationSettings(BaseSettings):
         env_file_encoding = "utf-8"
 
 
+def get_db_uri_from_env():
+    postgres_user = os.environ.get('POSTGRES_USER')
+    postgres_password = os.environ.get('POSTGRES_PASSWORD')
+    postgres_db = os.environ.get('POSTGRES_DB')
+    postgres_port = os.environ.get('POSTGRES_PORT')
+    postgres_host = os.environ.get('POSTGRES_HOST')
+    return f"postgresql://{postgres_user}:{postgres_password}@{postgres_host}:{postgres_port}/{postgres_db}"
+
+
 def get_settings():
-    return ApplicationSettings()
+    DATABASE_URI = get_db_uri_from_env()
+    return ApplicationSettings(DATABASE_URI=DATABASE_URI)
 
 
 def get_test_settings():
