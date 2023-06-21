@@ -1,6 +1,6 @@
 
 from sqlalchemy import *
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from thunderbolt.core.settings import get_settings
 
@@ -27,15 +27,36 @@ class User(ThunderboltModel):
 
     @property
     def password(self) -> str:
+        """
+        Get the password for the user.
+        
+        Raises:
+            AttributeError: Password is not a readable attribute. Use `hashed_password` instead.
+        """
         raise AttributeError("Password is not a readable attribute. Use `hashed_password` instead.")
 
     @password.setter
     def password(self, password: str) -> None:
+        """
+        Set the password for the user.
+        
+        Args:
+            password (str): The password to be hashed and stored.
+        """
         self.hashed_password = generate_password_hash(
             password,
             method=settings.HASH_METHOD,
             salt_length=settings.SALT_LENGTH
         )
+
+    def check_password(self, password: str) -> bool:
+        """
+        Check the password for the user.
+        
+        Args:
+            password (str): The password to be checked.
+        """
+        return check_password_hash(self.hashed_password, password)
 
     def __repr__(self):
         return f'<User {self.username}>'
