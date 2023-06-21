@@ -11,6 +11,8 @@ class Currency(ThunderboltModel):
     The Currency model represents a currency that is used in the marketplace.
     
     """
+    __tablename__ = 'currency'
+    
     name = Column(String(3), nullable=False)
     symbol = Column(String(3), nullable=False)
 
