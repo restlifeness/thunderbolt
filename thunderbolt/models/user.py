@@ -2,7 +2,7 @@
 from sqlalchemy import *
 from werkzeug.security import generate_password_hash
 
-from src.core.settings import get_settings
+from thunderbolt.core.settings import get_settings
 
 from .base import ThunderboltModel
 

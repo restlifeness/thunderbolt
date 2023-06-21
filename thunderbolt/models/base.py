@@ -3,7 +3,7 @@ import uuid
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 
-from src.core.settings import get_settings
+from thunderbolt.core.settings import get_settings
 
 
 Base = declarative_base()

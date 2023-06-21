@@ -4,8 +4,8 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-from src.models.base import ThunderboltModel
-from src.core.settings import get_settings
+from thunderbolt.models.base import ThunderboltModel
+from thunderbolt.core.settings import get_settings
 
 
 settings = get_settings()
