@@ -62,7 +62,7 @@ async def test_get_user(mock_session):
 
         await user_repo.add(user)
 
-        retrieved_user = user_repo.get(user.id)
+        retrieved_user = await user_repo.get(user.id)
 
         assert retrieved_user == user
 
@@ -76,7 +76,7 @@ async def test_get_user_by_username(mock_session):
 
         await user_repo.add(user)
 
-        retrieved_user = user_repo.get_by_username(user.username)
+        retrieved_user = await user_repo.get_by_username(user.username)
 
         assert retrieved_user == user
 
@@ -90,7 +90,7 @@ async def test_get_user_by_email(mock_session):
 
         await user_repo.add(user)
 
-        retrieved_user = user_repo.get_by_email(user.email)
+        retrieved_user = await user_repo.get_by_email(user.email)
 
         assert retrieved_user == user
 
@@ -105,7 +105,7 @@ async def test_get_all_users(mock_session):
             user.password = 'password'
             await user_repo.add(user)
 
-        all_users = user_repo.get_all()
+        all_users = await user_repo.get_all()
 
         assert len(all_users) == 5
 
