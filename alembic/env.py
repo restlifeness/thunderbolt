@@ -5,10 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 from thunderbolt.models.base import ThunderboltModel
-from thunderbolt.core.settings import get_settings
+from thunderbolt.core.settings import get_sync_db_uri_from_env
 
-
-settings = get_settings()
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -24,7 +22,7 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 target_metadata = ThunderboltModel.metadata
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URI)
+config.set_main_option("sqlalchemy.url", get_sync_db_uri_from_env())
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

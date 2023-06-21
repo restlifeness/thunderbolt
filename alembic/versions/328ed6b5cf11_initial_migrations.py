@@ -1,8 +1,8 @@
-"""initial migrations
+"""Initial migrations
 
-Revision ID: 222c6733ea30
+Revision ID: 328ed6b5cf11
 Revises: 
-Create Date: 2023-06-21 17:54:14.230467
+Create Date: 2023-06-21 19:20:15.443529
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '222c6733ea30'
+revision = '328ed6b5cf11'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -51,8 +51,8 @@ def upgrade() -> None:
     sa.Column('username', sa.String(length=255), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
-    sa.Column('group_id', sa.Integer(), nullable=False),
-    sa.Column('admin_group_id', sa.Integer(), nullable=False),
+    sa.Column('group_id', sa.UUID(), nullable=True),
+    sa.Column('admin_group_id', sa.UUID(), nullable=True),
     sa.Column('id', sa.UUID(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
@@ -64,7 +64,7 @@ def upgrade() -> None:
     sa.UniqueConstraint('username')
     )
     op.create_table('shop_details',
-    sa.Column('seller_id', sa.Integer(), nullable=False),
+    sa.Column('seller_id', sa.UUID(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
     sa.Column('id', sa.UUID(), nullable=False),
@@ -75,12 +75,12 @@ def upgrade() -> None:
     sa.UniqueConstraint('id')
     )
     op.create_table('product',
-    sa.Column('shop_id', sa.Integer(), nullable=False),
+    sa.Column('shop_id', sa.UUID(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('image_url', sa.Text(), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
     sa.Column('price', sa.DECIMAL(), nullable=False),
-    sa.Column('currency_id', sa.Integer(), nullable=False),
+    sa.Column('currency_id', sa.UUID(), nullable=False),
     sa.Column('id', sa.UUID(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
@@ -90,8 +90,8 @@ def upgrade() -> None:
     sa.UniqueConstraint('id')
     )
     op.create_table('product_cart',
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('product_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.UUID(), nullable=False),
+    sa.Column('product_id', sa.UUID(), nullable=False),
     sa.Column('id', sa.UUID(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
