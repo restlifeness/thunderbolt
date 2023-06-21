@@ -27,7 +27,7 @@ class ShopDetails(ThunderboltModel):
     """
     __tablename__ = 'shop_details'
 
-    seller_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    seller_id = Column(UUID(as_uuid=True), ForeignKey('user.id'), nullable=False)
     name = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
 
@@ -43,13 +43,13 @@ class Product(ThunderboltModel):
     """
     __tablename__ = 'product'
 
-    shop_id = Column(Integer, ForeignKey('shop_details.id'), nullable=False)
+    shop_id = Column(UUID(as_uuid=True), ForeignKey('shop_details.id'), nullable=False)
     name = Column(String(255), nullable=False)
     image_url = Column(Text, nullable=False)
     description = Column(Text, nullable=True)
 
     price = Column(DECIMAL, nullable=False)
-    currency_id = Column(Integer, ForeignKey('currency.id'), nullable=False)
+    currency_id = Column(UUID(as_uuid=True), ForeignKey('currency.id'), nullable=False)
 
     def __repr__(self):
         return f'<Product {self.name}>'
@@ -63,8 +63,8 @@ class ProductCart(ThunderboltModel):
     """
     __tablename__ = 'product_cart'
 
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
-    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
+    user_id = Column(UUID(as_uuid=True), ForeignKey('user.id'), nullable=False)
+    product_id = Column(UUID(as_uuid=True), ForeignKey('product.id'), nullable=False)
 
     def __repr__(self):
         return f'<ProductCart {self.user_id} {self.product_id}>'

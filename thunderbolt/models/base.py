@@ -1,7 +1,7 @@
 import uuid
 
 from sqlalchemy import *
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 
 from thunderbolt.core.settings import get_settings
 

@@ -22,8 +22,8 @@ class User(ThunderboltModel):
     email = Column(String(255), unique=True, nullable=False)
     hashed_password = Column(String(255), nullable=False)
 
-    group_id = Column(Integer, ForeignKey('group.id'), nullable=True)
-    admin_group_id = Column(Integer, ForeignKey('admin_group.id'), nullable=True)
+    group_id = Column(UUID(as_uuid=True), ForeignKey('group.id'), nullable=True)
+    admin_group_id = Column(UUID(as_uuid=True), ForeignKey('admin_group.id'), nullable=True)
 
     @property
     def password(self) -> str:

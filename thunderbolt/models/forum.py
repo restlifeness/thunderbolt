@@ -44,7 +44,7 @@ class Thread(ThunderboltModel):
     """
     __tablename__ = 'thread'
 
-    topic_id = Column(Integer, ForeignKey('topic.id'), nullable=False)
+    topic_id = Column(UUID(as_uuid=True), ForeignKey('topic.id'), nullable=False)
     title = Column(String(50), nullable=False)
     description = Column(Text, nullable=True)
 
@@ -60,8 +60,8 @@ class Post(ThunderboltModel):
     """
     __tablename__ = 'post'
 
-    thread_id = Column(Integer, ForeignKey('thread.id'), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    thread_id = Column(UUID(as_uuid=True), ForeignKey('thread.id'), nullable=False)
+    user_id = Column(UUID(as_uuid=True), ForeignKey('user.id'), nullable=False)
 
     title = Column(String(255), nullable=False)
     content = Column(Text, nullable=False)
@@ -78,8 +78,8 @@ class PostTags(ThunderboltModel):
     """
     __tablename__ = 'post_tags'
     
-    post_id = Column(Integer, ForeignKey('post.id'), nullable=False)
-    tag_id = Column(Integer, ForeignKey('tag.id'), nullable=False)
+    post_id = Column(UUID(as_uuid=True), ForeignKey('post.id'), nullable=False)
+    tag_id = Column(UUID(as_uuid=True), ForeignKey('tag.id'), nullable=False)
 
     def __repr__(self):
         return f'<PostTags {self.post_id} {self.tag_id}>'
