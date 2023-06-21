@@ -5,6 +5,7 @@ from pathlib import Path
 
 from sqlalchemy import select
 
+# NOTE: Fucking bullshit 
 sys.path.append(str(Path.cwd()))
 
 from thunderbolt.models.user import User
