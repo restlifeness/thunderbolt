@@ -3,6 +3,9 @@
 fastapi>=0.97.0
 Werkzeug>=2.3.6
 
+# Utils
+python-dotenv>=1.0.0
+
 # Database
 SQLAlchemy>=2.0.16
 alembic>=1.11.1
