@@ -45,7 +45,7 @@ class Product(ThunderboltModel):
 
     shop_id = Column(Integer, ForeignKey('shop_details.id'), nullable=False)
     name = Column(String(255), nullable=False)
-    image_url = Column(URL, nullable=False)
+    image_url = Column(Text, nullable=False)
     description = Column(Text, nullable=True)
 
     price = Column(DECIMAL, nullable=False)
