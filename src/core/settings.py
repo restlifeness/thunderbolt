@@ -8,7 +8,16 @@ TEST_DB_URI = "sqlite:///./test.db"
 class ApplicationSettings(BaseSettings):
     APP_NAME: str = "Thunderbolt"
 
-    DATABASE_URI: str
+    DATABASE_URI: str = None
+
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
+    POSTGRES_DB: str
+    POSTGRES_PORT: int
+    POSTGRES_HOST: str
+
+    REDIS_PORT: int
+    REDIS_HOST: str
 
     HASH_METHOD: str = 'sha256'
     SALT_LENGTH: int = 16
