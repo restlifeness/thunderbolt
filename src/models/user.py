@@ -11,6 +11,13 @@ settings = get_settings()
 
 
 class User(ThunderboltModel):
+    """
+    User model
+    
+    The User model represents a user of the application. This class includes
+    """
+    __tablename__ = 'user'
+    
     username = Column(String(255), unique=True, nullable=False)
     email = Column(String(255), unique=True, nullable=False)
     hashed_password = Column(String(255), nullable=False)
