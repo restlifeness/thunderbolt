@@ -6,6 +6,12 @@ from .base import ThunderboltModel
 
 
 class Group(ThunderboltModel):
+    """
+    Group model
+    
+    The Group model represents a group that a user can be a member of.
+    
+    """
     __tablename__ = 'group'
 
     name = Column(String(255), unique=True, nullable=False)
@@ -18,6 +24,12 @@ class Group(ThunderboltModel):
 
 
 class AdminGroup(ThunderboltModel):
+    """
+    AdminGroup model
+    
+    The AdminGroup model represents a group that a user can be an admin of.
+    
+    """
     __tablename__ = 'admin_group'
 
     name = Column(String(255), unique=True, nullable=False)
