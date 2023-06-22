@@ -71,12 +71,12 @@ async def create_user(
     return await user_service.create_new_user(user_data)
 
 
-@user_router.post("/")
+@user_router.post("/", response_model=UserPersonalInfoResponse)
 async def update_user(
     user_data: UserPersonalInfo,
     user: Annotated[User, Depends(get_user_by_token)],
     user_service: Annotated[UserService, Depends(UserService)],
-) -> None:
+) -> UserPersonalInfoResponse:
     """
     Update a user.
     
