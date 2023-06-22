@@ -13,7 +13,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 async def get_user_by_token(
-    token: Annotated[OAuth2PasswordBearer, Depends()],
+    token: Annotated[str, Depends(oauth2_scheme)],
     user_service: Annotated[UserService, Depends()]
 ) -> User:
     """
@@ -27,4 +27,10 @@ async def get_user_by_token(
         User: The user.
     """
     user = await user_service.get_user_by_token(token)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
     return user

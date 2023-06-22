@@ -1,8 +1,12 @@
 import uuid
 
+from typing import Annotated
+from fastapi import Depends
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from thunderbolt.core.session import get_session
 from thunderbolt.core.base import AbstractRepository
 from thunderbolt.models.user import User
 
@@ -15,7 +19,7 @@ class UserRepository(AbstractRepository):
     functions for adding, getting, and deleting user records.
     """
 
-    def __init__(self, session: AsyncSession):
+    def __init__(self, session: Annotated[AsyncSession, Depends(get_session)]):
         """
         Initialize the UserRepository class.
 

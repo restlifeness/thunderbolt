@@ -9,6 +9,7 @@ TEST_DB_URI = "sqlite+aiosqlite:///./test.db"
 
 class ApplicationSettings(BaseSettings):
     APP_NAME: str = "Thunderbolt"
+    DEBUG: bool = False
 
     DATABASE_URI: str = None
 
