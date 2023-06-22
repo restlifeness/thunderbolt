@@ -22,6 +22,11 @@ class User(ThunderboltModel):
     email = Column(String(255), unique=True, nullable=False)
     hashed_password = Column(String(255), nullable=False)
 
+    name = Column(String(255), nullable=False)
+    description = Column(String(255), nullable=True)
+    gender = Column(Enum('male', 'female', 'other'), nullable=True)
+    birthday = Column(Date, nullable=True)
+
     group_id = Column(UUID(as_uuid=True), ForeignKey('group.id'), nullable=True)
     admin_group_id = Column(UUID(as_uuid=True), ForeignKey('admin_group.id'), nullable=True)
 
