@@ -24,7 +24,7 @@ class User(ThunderboltModel):
 
     name = Column(String(255), nullable=False)
     description = Column(String(255), nullable=True)
-    gender = Column(Enum('male', 'female', 'other'), nullable=True)
+    gender = Column(Enum('male', 'female', 'other', name='genders_options'), nullable=True)
     birthday = Column(Date, nullable=True)
 
     group_id = Column(UUID(as_uuid=True), ForeignKey('group.id'), nullable=True)
