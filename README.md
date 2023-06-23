@@ -6,3 +6,53 @@ Because aviation is my _second love_, right after programming. There's something
 
 # 🔎 Project Overview
 The fundamental concept of our project is not novel, yet it's quite simple and effective - we aim to merge a discussion forum and a shop into one seamless platform. This fusion creates a unique environment where users can pose questions or seek advice on various topics. However, for more complex issues or scenarios requiring specific professional expertise, users have the ability to engage directly with industry professionals. These experts, in exchange for their services, would receive a mutually agreed-upon fee. In this way, we create an ecosystem that balances the free exchange of information with the availability of paid professional consultancy.
+
+# 💾 Current state of the project
+
+This project was originally created as a test task. Many features were implemented more to showcase potential, rather than for full-fledged functionality. The current version is an MVP (Minimum Viable Product) v0.0.1.
+
+## June 2023 update
+- Created core-endpoints
+- Laid the groundwork for the forum
+- Established the foundation for the store
+- Payment system has been created and implemented
+
+## June 2023 todo's
+- Payment system
+- Testing
+- Group system
+
+# ⚙️ Stack
+### Core
+- FastAPI
+- SQLAlchemy
+- Alembic
+
+### Tests
+- pytest
+
+### Database
+- Postgres
+- Redis (future)
+
+### Deployment
+- Docker
+- docker-compose
+- Makefile
+
+# ▶️ Quick start
+
+1. Clone repo
+  ```bash
+  git clone https://github.com/djentelmen/thunderbolt.git
+  ```
+2. __FOR WINDOWS:__ Install and run [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) 
+3. Install and run [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+4. Run migrations
+```bash
+make migrate
+```
+5. Run application
+```bash
+make start
+```
