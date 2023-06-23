@@ -1,6 +1,6 @@
 
 # API
-fastapi==0.96.0
+fastapi>=0.97.0
 Werkzeug>=2.3.6
 pyjwt>=2.7.0
 uvicorn>=0.22.0
@@ -8,6 +8,9 @@ uvicorn>=0.22.0
 # Utils
 python-dotenv>=1.0.0
 python-multipart>=0.0.6
+
+# Payments
+yookassa>=2.3.6
 
 # Database
 SQLAlchemy>=2.0.16
