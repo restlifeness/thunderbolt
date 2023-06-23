@@ -22,6 +22,23 @@ This project was originally created as a test task. Many features were implement
 - Testing
 - Group system
 
+# ▶️ Quick start
+
+1. Clone repo
+  ```bash
+  git clone https://github.com/djentelmen/thunderbolt.git
+  ```
+2. __FOR WINDOWS:__ Install and run [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) 
+3. Install and run [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+4. Run migrations
+```bash
+make migrate
+```
+5. Run application
+```bash
+make start
+```
+
 # ⚙️ Stack
 ### Core
 - FastAPI
@@ -39,20 +56,3 @@ This project was originally created as a test task. Many features were implement
 - Docker
 - docker-compose
 - Makefile
-
-# ▶️ Quick start
-
-1. Clone repo
-  ```bash
-  git clone https://github.com/djentelmen/thunderbolt.git
-  ```
-2. __FOR WINDOWS:__ Install and run [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) 
-3. Install and run [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-4. Run migrations
-```bash
-make migrate
-```
-5. Run application
-```bash
-make start
-```
