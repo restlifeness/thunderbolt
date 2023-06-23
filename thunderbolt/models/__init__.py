@@ -3,6 +3,7 @@ from .group import Group
 from .market import ShopDetails, Product, Currency
 from .user import User
 from .base import ThunderboltModel
+from .forum import Topic, Thread, Post
 
 __all__ = (
     'ThunderboltModel',
@@ -10,5 +11,8 @@ __all__ = (
     'Group',
     'ShopDetails',
     'Product',
-    'Currency'
+    'Currency',
+    'Topic',
+    'Thread',
+    'Post',
 )

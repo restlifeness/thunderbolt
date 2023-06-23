@@ -1,4 +1,3 @@
-import uuid
 
 from typing import Annotated
 
@@ -19,7 +18,6 @@ user_router = APIRouter(
 @user_router.get("/users/{user_id}", response_model=UserPersonalInfoResponse)
 async def get_user(
     user_id: str,
-    user: Annotated[User, Depends(get_user_by_token)],
     user_repo: Annotated[UserRepository, Depends(UserRepository)],
 ) -> UserPersonalInfoResponse:
     """
@@ -37,12 +35,6 @@ async def get_user(
     Returns:
         UserPersonalInfoResponse: The requested user.
     """
-    if user_id != user.id:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Not authorized to access this user",
-        )
-
     target_user = await user_repo.get(user_id)
 
     if not target_user:
@@ -53,7 +45,7 @@ async def get_user(
 
     return target_user
 
-@user_router.put("/", response_model=UserPersonalInfoResponse)
+@user_router.post("/", response_model=UserPersonalInfoResponse)
 async def create_user(
     user_data: UserPersonalInfo,
     user_service: Annotated[UserService, Depends(UserService)],
@@ -71,7 +63,7 @@ async def create_user(
     return await user_service.create_new_user(user_data)
 
 
-@user_router.post("/", response_model=UserPersonalInfoResponse)
+@user_router.put("/", response_model=UserPersonalInfoResponse)
 async def update_user(
     user_data: UserPersonalInfo,
     user: Annotated[User, Depends(get_user_by_token)],

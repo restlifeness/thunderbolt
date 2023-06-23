@@ -1,5 +1,6 @@
 
 from sqlalchemy import *
+from sqlalchemy.orm import relationship
 
 from .base import ThunderboltModel
 
@@ -45,6 +46,8 @@ class Thread(ThunderboltModel):
     __tablename__ = 'thread'
 
     topic_id = Column(UUID(as_uuid=True), ForeignKey('topic.id'), nullable=False)
+    topic = relationship('Topic', backref='threads')
+
     title = Column(String(50), nullable=False)
     description = Column(Text, nullable=True)
 
@@ -61,7 +64,10 @@ class Post(ThunderboltModel):
     __tablename__ = 'post'
 
     thread_id = Column(UUID(as_uuid=True), ForeignKey('thread.id'), nullable=False)
+    thread = relationship('Thread', backref='posts')
+
     user_id = Column(UUID(as_uuid=True), ForeignKey('user.id'), nullable=False)
+    user = relationship('User', backref='posts')
 
     title = Column(String(255), nullable=False)
     content = Column(Text, nullable=False)

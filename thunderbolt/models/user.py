@@ -54,6 +54,12 @@ class User(ThunderboltModel):
             salt_length=settings.SALT_LENGTH
         )
 
+    def is_admin(self) -> bool:
+        """
+        Check if the user is an admin.
+        """
+        return bool(self.admin_group_id)
+
     def check_password(self, password: str) -> bool:
         """
         Check the password for the user.
