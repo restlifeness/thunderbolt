@@ -12,7 +12,7 @@ from thunderbolt.users.dependencies import get_user_by_token
 
 
 post_router = APIRouter(
-    tags=["post"],
+    tags=["post", "forum"],
     prefix="/forum",
 )
 

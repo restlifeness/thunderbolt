@@ -9,7 +9,7 @@ from thunderbolt.forum.schema.thread import ThreadInfoWithRelatedResponse
 
 
 thread_router = APIRouter(
-    tags=["thread"],
+    tags=["thread", "forum"],
     prefix="/forum",
 )
 

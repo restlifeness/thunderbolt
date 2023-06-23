@@ -9,7 +9,7 @@ from thunderbolt.forum.schema.topic import TopicInfoResponse
 
 
 topic_router = APIRouter(
-    tags=["topic"],
+    tags=["topic", "forum"],
     prefix="/forum",
 )
 
