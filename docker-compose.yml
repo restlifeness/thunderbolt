@@ -19,5 +19,12 @@ services:
     ports:
       - "${REDIS_PORT}:6379"
 
+  main:
+    build: .
+    command: python ./thunderbolt/main.py
+    depends_on:
+      - postgres
+      - redis
+
 volumes:
   postgres_data:
