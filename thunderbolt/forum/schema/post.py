@@ -11,6 +11,9 @@ class PostInfoResponse(BaseModel):
     user: UserPersonalInfoResponse = Field(description='User')
     title: str = Field(example='Post title', description='Post title')
 
+    class Config:
+        orm_mode = True
+
 
 class PostDataCreate(BaseModel):
     thread_id: int = Field(example=1, description='Thread ID')

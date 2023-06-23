@@ -14,6 +14,10 @@ class ThreadInfoWithoutRelatedResponse(BaseModel):
         description='Thread description'
     )
 
+    class Config:
+        orm_mode = True
+
+
 
 class ThreadInfoWithRelatedResponse(ThreadInfoWithoutRelatedResponse):
     topic: TopicInfoResponse = Field(
@@ -24,3 +28,6 @@ class ThreadInfoWithRelatedResponse(ThreadInfoWithoutRelatedResponse):
         ), 
         description='Topic'
     )
+
+    class Config:
+        orm_mode = True

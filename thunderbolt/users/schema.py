@@ -24,3 +24,5 @@ class UserPersonalInfo(BaseModel):
 class UserPersonalInfoResponse(UserPersonalInfo):
     id: UUID = Field(description="The uuid of the user")
 
+    class Config:
+        orm_mode = True
