@@ -3,6 +3,8 @@ from sqlalchemy import *
 
 from .base import ThunderboltModel
 
+from thunderbolt.core.payments import Priceable
+
 
 class Currency(ThunderboltModel):
     """
@@ -35,7 +37,7 @@ class ShopDetails(ThunderboltModel):
         return f'<ShopDetails {self.seller_name}>'
 
 
-class Product(ThunderboltModel):
+class Product(ThunderboltModel, Priceable):
     """
     Product model
     
